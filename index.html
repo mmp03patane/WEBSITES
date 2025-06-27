@@ -3,667 +3,702 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative365 - Websites That Work for Australian Tradies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Your Website - Custom Web Solutions for Melbourne Tradies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #FF6B00; /* Bold Orange - Tool-like, energetic */
-            --secondary-color: #0047AB; /* Deep Blue - Trustworthy, professional */
-            --dark-text: #222;
-            --light-text: #f9f9f9;
-            --bg-light: #f0f2f5; /* Off-white for sections */
-            --bg-dark: #2c3e50; /* Dark section for impact */
-            --border-color: #ddd;
-            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease-in-out;
-        }
-
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            color: var(--dark-text);
-            background-color: var(--bg-light);
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
         }
-
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+            max-width: 1200px;
         }
-
-        /* Utility Classes */
-        .text-center { text-align: center; }
-        .text-primary { color: var(--primary-color); }
-        .text-secondary { color: var(--secondary-color); }
-        .bg-primary { background-color: var(--primary-color); }
-        .bg-secondary { background-color: var(--secondary-color); }
-        .bg-dark { background-color: var(--bg-dark); }
-        .text-light { color: var(--light-text); }
-        .section-padding { padding: 60px 20px; }
-        .rounded-lg { border-radius: 12px; }
-        .shadow-md { box-shadow: var(--shadow); }
-
-        /* Header / Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x800/2c3e50/f9f9f9?text=Modern+Tradie+Website+Hero') no-repeat center center/cover;
-            color: var(--light-text);
-            padding: 100px 20px;
-            text-align: center;
+        .section-title {
             position: relative;
-            overflow: hidden;
+            display: inline-block;
+            padding-bottom: 8px;
         }
-
-        .hero::before { /* Overlay for a slightly gritty feel, like a tradie's workbench */
+        .section-title::after {
             content: '';
             position: absolute;
-            top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: #f97316; /* Orange-500 */
+            border-radius: 2px;
         }
-
-        .hero h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        .accordion-button {
+            transition: all 0.3s ease-in-out;
         }
-
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
         }
-
-        .hero .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 18px 35px;
-            font-size: 1.3em;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        .accordion-content.active {
+            max-height: 500px; /* Adjust as needed for content length */
         }
-
-        .hero .cta-button:hover {
-            background-color: #e65c00;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        .sample-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        /* Sections General */
-        section {
-            background-color: #fff;
-            margin-bottom: 30px;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-        }
-
-        section h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.5em;
-            color: var(--secondary-color);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        /* Problem Section */
-        .problem-section {
-            background-color: var(--bg-dark);
-            color: var(--light-text);
-            text-align: center;
-        }
-
-        .problem-section h2 {
-            color: var(--primary-color);
-        }
-
-        .problem-section .quote {
-            font-size: 1.6em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            line-height: 1.3;
-        }
-
-        .problem-section p {
-            font-size: 1.1em;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-        }
-
-        .problem-section .analogy {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            font-style: italic;
-            border-left: 5px solid var(--primary-color);
-            margin-top: 30px;
-            font-size: 1.2em;
-        }
-
-        /* Statistics Section */
-        .stats-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .stat-box {
-            background-color: var(--bg-light);
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            flex: 1 1 calc(33% - 40px); /* 3 per row on desktop */
-            min-width: 280px; /* Ensure they don't get too small */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border-bottom: 4px solid var(--primary-color);
-        }
-
-        .stat-box .number {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3.5em;
-            color: var(--secondary-color);
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1;
-        }
-
-        .stat-box .label {
-            font-size: 1.1em;
-            color: var(--dark-text);
-            font-weight: 600;
-        }
-
-        /* What I Do Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .service-item {
-            background-color: var(--bg-light);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
-            border-top: 5px solid var(--secondary-color);
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            transition: var(--transition);
-        }
-
-        .service-item:hover {
+        .sample-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-bg {
+            background-image: linear-gradient(to right, #fb923c, #f97316); /* Orange-400 to Orange-500 */
+        }
+        .btn-primary {
+            background-color: #f97316; /* Orange-500 */
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #ea580c; /* Orange-600 */
+        }
+        .bounce-animation {
+            animation: bounce-in 0.8s ease-out;
+        }
+        @keyframes bounce-in {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-5px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        /* Custom scrollbar for demo purposes if content overflows */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
 
-        .service-item i {
-            font-size: 2.2em;
-            color: var(--primary-color);
-            margin-top: 5px;
+        /* Styles for the new contact form */
+        .form-group-creative {
+            margin-bottom: 1.5rem;
         }
 
-        .service-item h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5em;
-            color: var(--dark-text);
-            margin-top: 0;
-            margin-bottom: 10px;
+        .form-group-creative label {
+            display: block;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
 
-        .service-item p {
-            font-size: 0.95em;
-            color: #555;
+        .form-group-creative input[type="text"],
+        .form-group-creative input[type="email"],
+        .form-group-creative input[type="tel"],
+        .form-group-creative input[type="date"],
+        .form-group-creative select,
+        .form-group-creative textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: #333;
+            background-color: #fff;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
-        /* About Section */
-        .about-section .profile-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 30px;
-            background-color: var(--bg-light);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            margin-top: 30px;
+        .form-group-creative input[type="text"]:focus,
+        .form-group-creative input[type="email"]:focus,
+        .form-group-creative input[type="tel"]:focus,
+        .form-group-creative input[type="date"]:focus,
+        .form-group-creative select:focus,
+        .form-group-creative textarea:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+            outline: none;
         }
 
-        .about-section .profile-card img {
-            width: 150px;
+        .form-group-creative textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group-creative input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: #f97316; /* Changes the color of the radio button itself */
+        }
+
+        .form-error-message {
+            color: #dc2626; /* Red-600 */
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        /* Profile photo for about section */
+        .profile-photo {
+            width: 150px; /* Adjust size as needed */
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid var(--primary-color);
-            margin-bottom: 20px;
+            margin: 0 auto 1.5rem auto; /* Center and add space below */
+            display: block;
+            border: 4px solid #f97316;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .about-section .profile-card h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2em;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .about-section .profile-card p {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin-bottom: 20px;
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            background-color: var(--secondary-color);
-            color: var(--light-text);
+        /* How it works steps styling */
+        .step-card {
+            background-color: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .testimonials-section h2 {
-            color: var(--primary-color);
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        .testimonial-carousel {
-            position: relative;
-            width: 100%;
-            height: 200px; /* Adjust as needed */
-            overflow: hidden;
-            margin-top: 30px;
+        .step-card .step-icon {
+            font-size: 3rem;
+            color: #f97316;
+            margin-bottom: 1rem;
         }
 
-        .testimonial-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .step-card .step-number {
+            display: inline-block;
+            background-color: #f97316;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 1.5rem;
         }
 
-        .testimonial-slide.active {
-            opacity: 1;
-        }
-
-        .testimonial-slide p {
-            font-size: 1.3em;
-            font-style: italic;
-            max-width: 800px;
-            margin: 0 auto 15px auto;
-        }
-
-        .testimonial-slide .author {
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        /* Final CTA */
-        .final-cta {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            color: var(--light-text);
-            margin-bottom: 30px;
-        }
-
-        .final-cta .cta-button {
-            background-color: var(--secondary-color);
-            color: var(--light-text);
-            padding: 18px 35px;
-            font-size: 1.3em;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: var(--transition);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .final-cta .cta-button:hover {
-            background-color: #003380;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark-text);
-            color: #bbb;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            .hero p {
-                font-size: 1.2em;
-            }
-            section h2 {
-                font-size: 2em;
-            }
-            .stat-box {
-                flex: 1 1 100%; /* Stack on small screens */
-            }
-            .service-item {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .service-item i {
-                margin-bottom: 10px;
-            }
-            .testimonial-carousel {
-                height: 250px; /* Adjust for stacked content */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-            .hero p {
-                font-size: 1em;
-            }
-            .hero .cta-button {
-                padding: 15px 25px;
-                font-size: 1.1em;
-            }
-            section {
-                padding: 30px 15px;
-            }
-            section h2 {
-                font-size: 1.8em;
+        /* Ensure form labels and inputs are aligned for desktop */
+        @media (min-width: 768px) {
+            .form-group-creative label {
+                text-align: left;
             }
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Header / Hero Section -->
-    <header class="hero">
-        <div class="container">
-            <h1>STOP LOSING MONEY ONLINE.</h1>
-            <p><strong>Australian Tradies & Service Businesses:</strong> Your website isn't a brochure, it's your #1 lead generator. If it's not converting, you're not just losing enquiries, you're handing cash to your competition.</p>
-            <a href="#cta" class="cta-button">GET A WEBSITE THAT ACTUALLY CONVERTS <i class="fas fa-arrow-right"></i></a>
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-f97316">Your<span class="text-gray-700">Web</span></a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#samples" class="text-gray-600 hover:text-f97316 font-medium">Our Work</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-f97316 font-medium">About</a></li>
+                    <li><a href="#how-it-works" class="text-gray-600 hover:text-f97316 font-medium">How it Works</a></li>
+                    <li><a href="#faq" class="text-gray-600 hover:text-f97316 font-medium">FAQ</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-f97316 font-medium">Get a Quote</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Problem Section -->
-        <section class="problem-section section-padding">
-            <div class="container">
-                <h2>The Brutal Truth About Your "Pretty" Website</h2>
-                <p class="quote">"Having a pretty website is an absolute waste of time. Having an overly complex site is a waste of time. If your customer can't find what they're looking for in under 3 seconds, you may as well call up your competitor, ask them for their BSB and account details, and transfer your monthly revenue to them."</p>
-                <p>Ouch. But it's true. So many tradies and service businesses invest in a website that looks good, but completely fails at its *real* job: **converting visitors into paying customers.**</p>
-                <div class="analogy">
-                    <p>Think of it like this: You wouldn't show up to a job with half-broken tools, would you? Your website is your digital toolkit. If it's not built for action, it's just dead weight.</p>
+    <section class="gradient-bg text-white py-20 md:py-32 rounded-b-3xl shadow-xl bounce-animation">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                Websites That Help You Win More Quotes And Book More Jobs Without Paying For Ads – Ready In Just 7 Days.
+            </h1>
+            <p class="text-xl md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
+                Sick of inconsistent punters? Get a high-converting website built and start booking more jobs this week.
+            </p>
+            <a href="#contact" class="inline-block bg-white text-f97316 px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                Get Your FREE Quote Now!
+            </a>
+        </div>
+    </section>
+
+    <section id="samples" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title mx-auto">See Our Work in Action</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+                Don't just take our word for it. Explore real examples of high-performing websites we've built from the ground up for businesses like yours.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="sample-item bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x250/F97316/FFFFFF?text=Plumber+Website" alt="Plumber Website Sample" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-2xl font-semibold mb-2">Ace Plumbing Solutions</h3>
+                    <p class="text-gray-600 mb-4">A sleek, mobile-first design focused on lead generation for a local plumber.</p>
+                    <a href="https://example.com/plumber-site" target="_blank" class="text-f97316 hover:text-ea580c font-bold inline-flex items-center">
+                        View Live Site
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4 0h6m0 0l-6-6m6 6L14 10"></path></svg>
+                    </a>
+                </div>
+
+                <div class="sample-item bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x250/F97316/FFFFFF?text=Electrician+Website" alt="Electrician Website Sample" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-2xl font-semibold mb-2">Sparky's Electrics</h3>
+                    <p class="text-gray-600 mb-4">Fast loading and easy navigation to book electrical services instantly.</p>
+                    <a href="https://example.com/electrician-site" target="_blank" class="text-f97316 hover:text-ea580c font-bold inline-flex items-center">
+                        View Live Site
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4 0h6m0 0l-6-6m6 6L14 10"></path></svg>
+                    </a>
+                </div>
+
+                <div class="sample-item bg-gray-100 p-6 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x250/F97316/FFFFFF?text=Landscaper+Website" alt="Landscaper Website Sample" class="rounded-lg mb-4 w-full h-auto object-cover">
+                    <h3 class="text-2xl font-semibold mb-2">GreenThumb Landscaping</h3>
+                    <p class="text-gray-600 mb-4">Beautiful galleries and clear service offerings for a landscaping business.</p>
+                    <a href="https://example.com/landscaper-site" target="_blank" class="text-f97316 hover:text-ea580c font-bold inline-flex items-center">
+                        View Live Site
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4 0h6m0 0l-6-6m6 6L14 10"></path></svg>
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Solution Section / Stats -->
-        <section class="section-padding">
-            <div class="container">
-                <h2 class="text-secondary">It's Time for a Website That Works as Hard as You Do.</h2>
-                <p class="text-center" style="font-size: 1.1em; max-width: 800px; margin: 0 auto 50px auto;">A high-performing website isn't a luxury; it's the bedrock of your business growth. Here's why you need a conversion-focused online presence:</p>
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 text-center max-w-3xl">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title mx-auto">About Us</h2>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <img src="https://github.com/mmp03patane/creative/blob/main/PROFILE%20PHOTO%203.PNG?raw=true" alt="Michael Patane Photo" class="profile-photo" />
+                <p class="mb-4">Hey everyone,</p>
+                <p class="mb-4">I'm <b>Michael Patane</b>, and I run <b>Creative365:</b> <i>A business consultancy that helps residential service businesses grow.</i></p>
+                <p class="mb-4">I’ve worked with some of the biggest companies in Australia:</p>
+                <p class="mb-4">At <b>GLG</b>, I clocked up <b>hundreds of consulting hours</b> helping service-based businesses with anything from franchising advice to lead generation. Electricians, plumbers, gardeners, painters, and general trades. I've seen it all...</p>
+                <p class="mb-4">At <b>Jim’s Group</b>, I helped streamline onboarding operations for franchisees. I hosted a monthly lecture teaching mowing franchisees how to use technology to <b>quote</b>, <b>schedule</b> and <b>invoice</b> clients.</p>
+                <p class="mb-4">At <b>MYOB</b>, I assisted medium sized businesses to engage digitally and drive adoption through education. I focused on <b>internal efficiencies</b> to <b>elevate customer success experiences</b>.</p>
+                <p>And now, with <b>Creative365</b>, I help service-based business grow by designing <b>customer acquisition</b> and <b>retention</b> strategies that generate <b>predictable revenue</b>.</p>
+            </div>
+        </div>
+    </section>
 
-                <div class="stats-section">
-                    <div class="stat-box">
-                        <div class="number" data-target="97">0%</div>
-                        <div class="label">of Australians search for local businesses online. If you're not there, you're invisible.</div>
+    <section id="how-it-works" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title mx-auto">How We Build Your Online Presence</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+                Getting a powerful, lead-generating website is simpler than you think. Here’s our straightforward process:
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Your Initial Quote Request</h3>
+                    <p class="text-gray-700">Fill out our quick online form. Tell us a bit about your business and what you're looking for in a website. This helps us understand your unique needs.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Let's Have a Chat</h3>
+                    <p class="text-gray-700">We'll schedule a brief phone call to discuss your goals in detail. This is where we answer your questions and ensure we're aligned on your vision.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Crafting Your Custom Site</h3>
+                    <p class="text-gray-700">Our team gets to work, meticulously coding and designing a custom website tailored specifically for your tradie business. We focus on speed, user experience, and lead conversion.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-gray-800">Launch & Lead Generation</h3>
+                    <p class="text-gray-700">Once you're thrilled with the result, we launch your new website! Within days, you'll have a high-performing digital asset ready to attract more quotes and book more jobs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title mx-auto">Your Questions, Answered.</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+                We know you have questions, and we're here to give you straightforward answers. No hidden clauses, just transparency.
+            </p>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
+                        <span>Do I own the IP once the site is done?</span>
+                        <span class="transform transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 text-gray-700">
+                        <p class="pt-2">Absolutely, 100%! When we build your website, it's *your* website. You own all the intellectual property, including the code, design, and content. We simply build it for you. There are no ongoing licensing fees or proprietary systems locking you in. Complete transparency, complete ownership.</p>
                     </div>
-                    <div class="stat-box">
-                        <div class="number" data-target="75">0%</div>
-                        <div class="label">of Australian consumers prefer to purchase from businesses with websites. Credibility matters.</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
+                        <span>Do you use a CMS, or just templates?</span>
+                        <span class="transform transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 text-gray-700">
+                        <p class="pt-2"><strong>Hell no!</strong> We believe in crafting unique, high-performance digital assets. We don't use bloated Content Management Systems (CMS) like WordPress, Wix, or Shopify for our core builds. Every single website we deliver is coded from the ground up, typically managed with Git (like GitHub) for version control and deployment. This means zero unnecessary code, ultimate flexibility, and blazing-fast speeds. No templates, no hacks, just bespoke code.</p>
                     </div>
-                    <div class="stat-box">
-                        <div class="number" data-target="25">0%</div>
-                        <div class="label">business growth reported by small businesses with effective websites.</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
+                        <span>I've tried to build my own site on a CMS, can you save my DIY disaster?</span>
+                        <span class="transform transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 text-gray-700">
+                        <p class="pt-2">You're not alone! Many tradies attempt DIY websites only to find them slow, inflexible, or just not professional enough. We can absolutely help. We'll assess what's salvageable from your existing efforts (content, branding assets etc.) and then use that as a foundation to build a completely new, high-performance, custom website from the ground up. We turn your 'disaster' into a digital asset that works for you.</p>
                     </div>
-                    <div class="stat-box">
-                        <div class="number" data-target="53">0%</div>
-                        <div class="label">of mobile users abandon a site if it takes longer than 3 seconds to load. Speed is revenue.</div>
-                    </div>
-                     <div class="stat-box">
-                        <div class="number" data-target="400">0%</div>
-                        <div class="label">potential increase in conversion rates with better UX design.</div>
-                    </div>
-                     <div class="stat-box">
-                        <div class="number" data-target="28">0%</div>
-                        <div class="label">of local searches result in a purchase. Your local market is waiting.</div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
+                        <span>Are your websites fast and not bloated like a CMS?</span>
+                        <span class="transform transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6 text-gray-700">
+                        <p class="pt-2">Yes, it's one of our core promises! Traditional CMS platforms are notorious for being bloated with unnecessary features, plugins, and code that slow them down. Because we code from scratch, we include only what's absolutely essential for your business. This results in incredibly fast loading times, superior SEO performance, and a smoother experience for your potential customers. Our websites are built to perform, not to bloat.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- What I Do Section -->
-        <section class="section-padding bg-light">
-            <div class="container">
-                <h2 class="text-primary">What Creative365 Does: Building Your Digital Profit Machine</h2>
-                <p class="text-center" style="font-size: 1.1em; max-width: 800px; margin: 0 auto 50px auto;">I don't build pretty pictures. I build high-performing, lead-generating assets. Here's how I get your business booked solid:</p>
+    <section id="contact" class="gradient-bg text-white py-20 rounded-t-3xl shadow-xl">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                Ready for a Website That Generates Leads?
+            </h2>
+            <p class="text-xl md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
+                Our websites aren't just pretty faces; they're quote-generating motherf*cking machines! Let's build yours.
+            </p>
+            <button id="openQuoteModal" class="inline-block bg-white text-f97316 px-12 py-5 rounded-full text-xl font-bold shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+                Get Your Custom Quote!
+            </button>
+        </div>
+    </section>
 
-                <div class="services-grid">
-                    <div class="service-item">
-                        <i class="fas fa-globe-americas"></i>
-                        <div>
-                            <h3>Domain Setup Support</h3>
-                            <p>You buy the domain, I handle the techie setup. No headaches, just a smooth launch to establish your online address.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-server"></i>
-                        <div>
-                            <h3>FREE Hosting</h3>
-                            <p>Forget recurring hosting fees. Your website sits on fast, reliable, and FREE hosting, saving you hundreds annually.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-lock"></i>
-                        <div>
-                            <h3>FREE SSL Certificate</h3>
-                            <p>Security is non-negotiable. Your site gets a free SSL certificate, ensuring customer trust and better Google rankings.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-user-friends"></i>
-                        <div>
-                            <h3>Conversion-Focused UX Design</h3>
-                            <p>Every element, every click, every scroll is designed to guide your visitors to one action: contacting you. It's about easy-to-use sites that get results.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-cogs"></i>
-                        <div>
-                            <h3>Functional & High-Converting</h3>
-                            <p>No fluff, no unnecessary bells and whistles. Your website is built to perform, capture leads, and grow your business.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-sync-alt"></i>
-                        <div>
-                            <h3>CRM Integration for Leads</h3>
-                            <p>Seamlessly capture leads and quote requests directly into your existing CRM system. Never miss an enquiry again.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-search"></i>
-                        <div>
-                            <h3>SEO Optimised from Day One</h3>
-                            <p>Be found when customers are searching for your services. Your site is built with fundamental SEO principles to rank higher on Google.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fab fa-google"></i>
-                        <div>
-                            <h3>Google Reviews Feature</h3>
-                            <p>Leverage your hard-earned reputation. Showcase your Google reviews directly on your site, building instant trust with new prospects.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fas fa-file-alt"></i>
-                        <div>
-                            <h3>Scalable (1 to 7 Pages)</h3>
-                            <p>Whether you need a powerful single-page presence or a multi-page site, I build exactly what your business needs to grow.</p>
-                        </div>
+    <div id="quoteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full relative transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold leading-none">&times;</button>
+            <h3 class="text-3xl font-bold text-center text-f97316 mb-6">Let's Get You More Leads!</h3>
+            <p class="text-center text-gray-600 mb-6">Fill out the form below to schedule a call with Michael and discuss your project. We'll confirm the exact time via email.</p>
+            
+            <form id="creative365ContactForm" method="POST" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT_HERE" class="space-y-4">
+                <div class="form-group-creative">
+                    <label for="fullName">Your Full Name<span style="color:red;">*</span></label>
+                    <input type="text" id="fullName" name="Name" placeholder="John Smith" required>
+                    <span class="form-error-message" id="nameError" style="display: none;"></span>
+                </div>
+
+                <div class="form-group-creative">
+                    <label for="emailAddress">Your Email Address<span style="color:red;">*</span></label>
+                    <input type="email" id="emailAddress" name="Email" placeholder="john.smith@example.com" required>
+                    <span class="form-error-message" id="emailError" style="display: none;"></span>
+                </div>
+
+                <div class="form-group-creative">
+                    <label for="phoneNumber">Your Phone Number<span style="color:red;">*</span></label>
+                    <input type="tel" id="phoneNumber" name="Phone" placeholder="e.g., 04XX XXX XXX" required>
+                    <span class="form-error-message" id="phoneError" style="display: none;"></span>
+                </div>
+
+                <div class="form-group-creative">
+                    <label for="preferredDate">Preferred Date for a Call<span style="color:red;">*</span></label>
+                    <input type="date" id="preferredDate" name="Preferred_Date" required>
+                    <span class="form-error-message" id="dateError" style="display: none;"></span>
+                    <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">Please select a date at least 24 hours in the future.</p>
+                </div>
+
+                <div class="form-group-creative">
+                    <label for="preferredTimeSlot">Preferred Time Slot<span style="color:red;">*</span></label>
+                    <select id="preferredTimeSlot" name="Preferred_Time_Slot" required>
+                        <option value="">Select a time slot</option>
+                        <option value="Morning (9 AM - 12 PM AEST)">Morning (9 AM - 12 PM AEST)</option>
+                        <option value="Afternoon (1 PM - 4 PM AEST)">Afternoon (1 PM - 4 PM AEST)</option>
+                        <option value="Late Afternoon (4 PM - 5 PM AEST)">Late Afternoon (4 PM - 5 PM AEST)</option>
+                        <option value="Other">Other (Please specify in message)</option>
+                    </select>
+                    <span class="form-error-message" id="timeSlotError" style="display: none;"></span>
+                    <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">This is a request; we will confirm exact availability.</p>
+                </div>
+                
+                <div class="form-group-creative">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">Do you have your own custom domain?<span style="color:red;">*</span></label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="hasDomain" value="Yes" required>
+                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">Yes</span>
+                        </label>
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="hasDomain" value="No">
+                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">No</span>
+                        </label>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- About Section -->
-        <section class="section-padding">
-            <div class="container">
-                <h2>About Michael from Creative365</h2>
-                <div class="profile-card">
-                    <img src="https://placehold.co/150x150/0047AB/FF6B00?text=Your+Photo" alt="Michael from Creative365">
-                    <h3>Your Dedicated Website Partner</h3>
-                    <p>I'm Michael, and I understand the unique challenges Australian tradies and residential service businesses face. My approach is simple: cut the jargon, deliver real results. I'm not here to build you a fancy online brochure; I'm here to build you a **powerful conversion tool** that puts money in your pocket. I believe in direct, no-nonsense solutions that help you dominate your local market.</p>
-                    <p>Ready to stop leaving money on the table?</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials-section section-padding">
-            <div class="container">
-                <h2>What My Clients Say</h2>
-                <div class="testimonial-carousel" id="testimonialCarousel">
-                    <div class="testimonial-slide active">
-                        <p>"Michael delivered exactly what he promised. Our phone hasn't stopped ringing since the new site went live. No complicated tech talk, just results."</p>
-                        <div class="author">- John D., Local Electrician</div>
-                    </div>
-                    <div class="testimonial-slide">
-                        <p>"Finally, a website that actually brings in work! The CRM integration is a game-changer for my quoting process. Highly recommend Creative365."</p>
-                        <div class="author">- Sarah K., Mobile Mechanic</div>
-                    </div>
-                    <div class="testimonial-slide">
-                        <p>"I was sceptical about website ROI, but Michael showed me the numbers and then delivered. My site is a lead machine now."</p>
-                        <div class="author">- David R., Plumbing Services</div>
+                <div class="form-group-creative">
+                    <label class="block text-gray-700 text-sm font-semibold mb-2">
+                        Do you currently use a Customer Management System (CMS)?<span style="color:red;">*</span>
+                    </label>
+                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="usesCMS" value="Yes" required>
+                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">Yes</span>
+                        </label>
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="usesCMS" value="No">
+                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">No</span>
+                        </label>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Final CTA Section -->
-        <section id="cta" class="final-cta section-padding">
-            <div class="container">
-                <h2>Don't Just Have a Website. Own a Lead Generation Machine.</h2>
-                <p style="font-size: 1.3em; margin-bottom: 40px;">Stop wasting time and money on pretty websites that do nothing. Let's build you an online presence that delivers real, measurable results for your Australian tradie or service business.</p>
-                <a href="mailto:michael@creative365.info?subject=Enquiry%20about%20Tradie%20Website" class="cta-button">BOOK A FREE NO-OBLIGATION CONSULTATION <i class="fas fa-handshake"></i></a>
-            </div>
-        </section>
-    </main>
+                <div class="form-group-creative">
+                    <label for="message">Your Message / Project Details<span style="color:red;">*</span></label>
+                    <textarea id="message" name="Message" rows="5" placeholder="Tell us about your business and website needs..." required></textarea>
+                    <span class="form-error-message" id="messageError" style="display: none;"></span>
+                </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Creative365. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-            <p>Built for Australian Tradies & Service Businesses.</p>
+                <button type="submit" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transform hover:scale-105 transition duration-300">
+                    Get My Custom Quote!
+                </button>
+                <p id="formMessage" class="text-center text-sm mt-4 text-gray-600"></p>
+            </form>
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Your Website. All rights reserved. Crafted for Melbourne Tradies.</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Stat Counter Animation
-            const statBoxes = document.querySelectorAll('.stat-box .number');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5 // When 50% of the element is visible
-            };
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('svg');
 
-            const animateCount = (element, target) => {
-                let current = 0;
-                const duration = 1500; // milliseconds
-                const increment = target / (duration / 10); // Calculate increment for 10ms intervals
+                button.classList.toggle('bg-gray-100'); // Toggle background on click
 
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        element.textContent = `${target}%`;
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = `${Math.floor(current)}%`;
-                    }
-                }, 10);
-            };
-
-            const statObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const numberElement = entry.target;
-                        const target = parseInt(numberElement.dataset.target);
-                        animateCount(numberElement, target);
-                        observer.unobserve(numberElement); // Stop observing once animated
+                // Close other open accordions
+                document.querySelectorAll('.accordion-button').forEach(otherButton => {
+                    if (otherButton !== button && otherButton.classList.contains('bg-gray-100')) {
+                        otherButton.classList.remove('bg-gray-100');
+                        otherButton.nextElementSibling.classList.remove('active');
+                        otherButton.querySelector('svg').classList.remove('rotate-180');
                     }
                 });
-            }, observerOptions);
 
-            statBoxes.forEach(box => {
-                statObserver.observe(box);
+                accordionContent.classList.toggle('active');
+                icon.classList.toggle('rotate-180');
             });
+        });
 
-            // Testimonial Carousel
-            const slides = document.querySelectorAll('.testimonial-slide');
-            let currentSlide = 0;
+        // Quote Modal Functionality
+        const openQuoteModalBtn = document.getElementById('openQuoteModal');
+        const closeQuoteModalBtn = document.getElementById('closeQuoteModal');
+        const quoteModal = document.getElementById('quoteModal');
+        const modalContent = document.getElementById('modalContent');
+        const creative365ContactForm = document.getElementById('creative365ContactForm'); // Changed form ID
+        const formMessage = document.getElementById('formMessage');
 
-            const showSlide = (index) => {
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    if (i === index) {
-                        slide.classList.add('active');
+        openQuoteModalBtn.addEventListener('click', () => {
+            quoteModal.classList.remove('hidden');
+            // Animate modal in
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        });
+
+        closeQuoteModalBtn.addEventListener('click', () => {
+            // Animate modal out
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                quoteModal.classList.add('hidden');
+            }, 300); // Allow time for animation
+        });
+
+        // Close modal when clicking outside of it
+        quoteModal.addEventListener('click', (e) => {
+            if (e.target === quoteModal) {
+                // Animate modal out
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    quoteModal.classList.add('hidden');
+                }, 300); // Allow time for animation
+            }
+        });
+
+        // Form validation and submission for the new form
+        creative365ContactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formMessage.textContent = 'Sending your request...';
+            formMessage.classList.remove('text-green-600', 'text-red-600');
+            formMessage.classList.add('text-gray-600');
+
+            let isValid = true;
+            const fullName = document.getElementById('fullName');
+            const emailAddress = document.getElementById('emailAddress');
+            const phoneNumber = document.getElementById('phoneNumber');
+            const preferredDate = document.getElementById('preferredDate');
+            const preferredTimeSlot = document.getElementById('preferredTimeSlot');
+            const message = document.getElementById('message');
+
+            // Simple validation example (can be expanded)
+            if (fullName.value.trim() === '') {
+                document.getElementById('nameError').textContent = 'Full Name is required.';
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+
+            if (emailAddress.value.trim() === '' || !emailAddress.value.includes('@')) {
+                document.getElementById('emailError').textContent = 'A valid Email Address is required.';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            if (phoneNumber.value.trim() === '') {
+                document.getElementById('phoneError').textContent = 'Phone Number is required.';
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('phoneError').style.display = 'none';
+            }
+
+            const selectedDate = new Date(preferredDate.value);
+            const now = new Date();
+            now.setHours(0, 0, 0, 0); // Reset time for comparison
+            const tomorrow = new Date(now);
+            tomorrow.setDate(now.getDate() + 1);
+
+            if (preferredDate.value === '' || selectedDate < tomorrow) {
+                document.getElementById('dateError').textContent = 'Please select a date at least 24 hours in the future.';
+                document.getElementById('dateError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('dateError').style.display = 'none';
+            }
+
+
+            if (preferredTimeSlot.value === '') {
+                document.getElementById('timeSlotError').textContent = 'Please select a preferred time slot.';
+                document.getElementById('timeSlotError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('timeSlotError').style.display = 'none';
+            }
+
+             // Validate radio buttons for domain and CMS
+            const hasDomainRadios = document.querySelectorAll('input[name="hasDomain"]');
+            const usesCMSRadios = document.querySelectorAll('input[name="usesCMS"]');
+            
+            let isDomainSelected = Array.from(hasDomainRadios).some(radio => radio.checked);
+            let isCmsSelected = Array.from(usesCMSRadios).some(radio => radio.checked);
+
+            if (!isDomainSelected) {
+                // You might want to add a visible error message here if the styling allows
+                isValid = false;
+            }
+            if (!isCmsSelected) {
+                // You might want to add a visible error message here if the styling allows
+                isValid = false;
+            }
+
+            if (message.value.trim() === '') {
+                document.getElementById('messageError').textContent = 'Please tell us about your project.';
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('messageError').style.display = 'none';
+            }
+
+
+            if (!isValid) {
+                formMessage.textContent = 'Please correct the errors in the form.';
+                formMessage.classList.remove('text-gray-600');
+                formMessage.classList.add('text-red-600');
+                return;
+            }
+
+            const formData = new FormData(creative365ContactForm); // Use FormData for the new form
+
+            try {
+                // Send form data to Formspree
+                const response = await fetch(creative365ContactForm.action, {
+                    method: creative365ContactForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
                     }
                 });
-            };
 
-            const nextSlide = () => {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            };
-
-            // Initial display
-            showSlide(currentSlide);
-
-            // Auto-rotate testimonials every 5 seconds
-            setInterval(nextSlide, 5000);
+                if (response.ok) {
+                    let llmResponseText = "Thank you for your submission! We've received your request and will be in touch shortly.";
+                    
+                    // You can still integrate an LLM for a more dynamic message after Formspree success if desired
+                    // For now, we'll use a static success message.
+                    formMessage.textContent = "Awesome! Your request has been sent. Michael will be in touch within 24-48 hours to discuss how we can get your quote-generating machine built!";
+                    formMessage.classList.remove('text-gray-600', 'text-red-600');
+                    formMessage.classList.add('text-green-600');
+                    creative365ContactForm.reset(); // Clear the form
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        formMessage.textContent = data.errors.map(error => error.message).join(', ');
+                    } else {
+                        formMessage.textContent = 'There was an error sending your request. Please try again.';
+                    }
+                    formMessage.classList.remove('text-gray-600', 'text-green-600');
+                    formMessage.classList.add('text-red-600');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                formMessage.textContent = 'There was an error sending your request. Please try again or contact us directly.';
+                formMessage.classList.remove('text-gray-600', 'text-green-600');
+                formMessage.classList.add('text-red-600');
+            }
         });
+
+        // Initialize accordion state on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply bounce animation to the hero section on load
+            const heroSection = document.querySelector('.gradient-bg'); // Changed to match class
+            if (heroSection) {
+                heroSection.classList.add('bounce-animation');
+            }
+        });
+
     </script>
 </body>
 </html>
