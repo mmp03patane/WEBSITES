@@ -36,16 +36,17 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            /* Important: padding-top on the content itself can cause partial visibility */
-            /* The padding-bottom should be kept inside the active state or adjusted carefully */
-            padding-top: 0; /* Ensures no visible padding when collapsed */
-            padding-bottom: 0; /* Ensures no visible padding when collapsed */
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Include padding in transition */
+            transition: max-height 0.5s ease-out;
+            /* Keep padding-bottom on the p tag or within the content, not on the accordion-content itself,
+               so max-height: 0; can truly hide it. */
+            padding: 0; /* Reset padding directly on accordion-content */
+        }
+        .accordion-content p {
+            padding-top: 0.5rem; /* Equivalent to Tailwind's pt-2 */
+            padding-bottom: 1.5rem; /* Equivalent to Tailwind's pb-6 */
         }
         .accordion-content.active {
             max-height: 500px; /* Adjust as needed for content length */
-            padding-top: 0.5rem; /* pt-2 in Tailwind, example */
-            padding-bottom: 1.5rem; /* pb-6 in Tailwind, example */
         }
         .sample-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -523,8 +524,8 @@
                         <span>Do I own the IP once the site is done?</span>
                         <span class="accordion-icon">+</span>
                     </button>
-                    <div class="accordion-content px-6 pb-6 text-gray-700">
-                        <p class="pt-2">Absolutely, 100%! When we build your website, it's *your* website. You own all the intellectual property, including the code, design, and content. We simply build it for you. There are no ongoing licensing fees or proprietary systems locking you in. Complete transparency, complete ownership.</p>
+                    <div class="accordion-content">
+                        <p>Absolutely, 100%! When we build your website, it's *your* website. You own all the intellectual property, including the code, design, and content. We simply build it for you. There are no ongoing licensing fees or proprietary systems locking you in. Complete transparency, complete ownership.</p>
                     </div>
                 </div>
 
@@ -533,8 +534,8 @@
                         <span>Do you use a CMS, or just templates?</span>
                         <span class="accordion-icon">+</span>
                     </button>
-                    <div class="accordion-content px-6 pb-6 text-gray-700">
-                        <p class="pt-2"><strong>Hell no!</strong> We believe in crafting unique, high-performance digital assets. We don't use bloated Content Management Systems (CMS) like WordPress, Wix, or Shopify for our core builds. Every single website we deliver is coded from the ground up, typically managed with Git (like GitHub) for version control and deployment. This means zero unnecessary code, ultimate flexibility, and blazing-fast speeds. No templates, no hacks, just bespoke code.</p>
+                    <div class="accordion-content">
+                        <p><strong>Hell no!</strong> We believe in crafting unique, high-performance digital assets. We don't use bloated Content Management Systems (CMS) like WordPress, Wix, or Shopify for our core builds. Every single website we deliver is coded from the ground up, typically managed with Git (like GitHub) for version control and deployment. This means zero unnecessary code, ultimate flexibility, and blazing-fast speeds. No templates, no hacks, just bespoke code.</p>
                     </div>
                 </div>
 
@@ -543,8 +544,8 @@
                         <span>I've tried to build my own site on a CMS, can you save my DIY disaster?</span>
                         <span class="accordion-icon">+</span>
                     </button>
-                    <div class="accordion-content px-6 pb-6 text-gray-700">
-                        <p class="pt-2">You're not alone! Many tradies attempt DIY websites only to find them slow, inflexible, or just not professional enough. We can absolutely help. We'll assess what's salvageable from your existing efforts (content, branding assets etc.) and then use that as a foundation to build a completely new, high-performance, custom website from the ground up. We turn your 'disaster' into a digital asset that works for you.</p>
+                    <div class="accordion-content">
+                        <p>You're not alone! Many tradies attempt DIY websites only to find them slow, inflexible, or just not professional enough. We can absolutely help. We'll assess what's salvageable from your existing efforts (content, branding assets etc.) and then use that as a foundation to build a completely new, high-performance, custom website from the ground up. We turn your 'disaster' into a digital asset that works for you.</p>
                     </div>
                 </div>
 
@@ -553,8 +554,8 @@
                         <span>Are your websites fast and not bloated like a CMS?</span>
                         <span class="accordion-icon">+</span>
                     </button>
-                    <div class="accordion-content px-6 pb-6 text-gray-700">
-                        <p class="pt-2">Yes, it's one of our core promises! Traditional CMS platforms are notorious for being bloated with unnecessary features, plugins, and code that slow them down. Because we code from scratch, we include only what's absolutely essential for your business. This results in incredibly fast loading times, superior SEO performance, and a smoother experience for your potential customers. Our websites are built to perform, not to bloat.</p>
+                    <div class="accordion-content">
+                        <p>Yes, it's one of our core promises! Traditional CMS platforms are notorious for being bloated with unnecessary features, plugins, and code that slow them down. Because we code from scratch, we include only what's absolutely essential for your business. This results in incredibly fast loading times, superior SEO performance, and a smoother experience for your potential customers. Our websites are built to perform, not to bloat.</p>
                     </div>
                 </div>
             </div>
@@ -781,25 +782,18 @@
                 document.querySelectorAll('.accordion-content').forEach(otherContent => {
                     if (otherContent !== accordionContent && otherContent.classList.contains('active')) {
                         otherContent.classList.remove('active');
-                        // Remove padding classes manually
-                        otherContent.classList.remove('pt-2', 'pb-6'); 
-                        const otherButton = otherContent.previousElementSibling;
-                        otherButton.classList.remove('bg-gray-100');
-                        otherButton.querySelector('.accordion-icon').textContent = '+';
+                        otherContent.previousElementSibling.classList.remove('bg-gray-100');
+                        otherContent.previousElementSibling.querySelector('.accordion-icon').textContent = '+';
                     }
                 });
 
                 // Toggle the clicked accordion's content and icon
                 if (isActive) {
                     accordionContent.classList.remove('active');
-                    // Remove padding classes manually
-                    accordionContent.classList.remove('pt-2', 'pb-6');
                     button.classList.remove('bg-gray-100');
                     icon.textContent = '+';
                 } else {
                     accordionContent.classList.add('active');
-                    // Add padding classes manually
-                    accordionContent.classList.add('pt-2', 'pb-6'); 
                     button.classList.add('bg-gray-100');
                     icon.textContent = '-';
                 }
@@ -1059,7 +1053,7 @@
         const closeFeaturesModalBtn = document.getElementById('closeFeaturesModal');
         const saveFeaturesButton = document.getElementById('saveFeaturesButton');
         const addedFeaturesDisplay = document.getElementById('addedFeaturesDisplay');
-        const featureCheckboxes = document.querySelectorAll('#addFeaturesModal input[name="feature']");
+        const featureCheckboxes = document.querySelectorAll('#addFeaturesModal input[name="feature"]');
 
         addMoreFeaturesLink.addEventListener('click', (e) => {
             e.preventDefault();
