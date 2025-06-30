@@ -513,7 +513,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                    <button class="accordion-button w-full flex justify-between items- Genter p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
+                    <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
                         <span>Do you use a CMS, or just templates?</span>
                         <span class="transform transition-transform duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -764,18 +764,21 @@
                 const accordionContent = button.nextElementSibling;
                 const icon = button.querySelector('svg');
 
-                button.classList.toggle('bg-gray-100'); 
+                // Toggle the 'active' class on the clicked accordion-content
+                accordionContent.classList.toggle('active');
+                // Toggle the 'rotate-180' class on the icon for rotation
+                icon.classList.toggle('rotate-180');
+                // Toggle background color for the button
+                button.classList.toggle('bg-gray-100');
 
-                document.querySelectorAll('.accordion-button').forEach(otherButton => {
-                    if (otherButton !== button && otherButton.classList.contains('bg-gray-100')) {
-                        otherButton.classList.remove('bg-gray-100');
-                        otherButton.nextElementSibling.classList.remove('active');
-                        otherButton.querySelector('svg').classList.remove('rotate-180');
+                // Close other open accordions
+                document.querySelectorAll('.accordion-content').forEach(otherContent => {
+                    if (otherContent !== accordionContent && otherContent.classList.contains('active')) {
+                        otherContent.classList.remove('active');
+                        otherContent.previousElementSibling.classList.remove('bg-gray-100');
+                        otherContent.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
                     }
                 });
-
-                accordionContent.classList.toggle('active');
-                icon.classList.toggle('rotate-180');
             });
         });
 
