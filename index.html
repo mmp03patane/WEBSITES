@@ -373,10 +373,9 @@
             font-weight: bold;
             color: #f97316; /* Orange color */
             margin-left: 1rem; /* Space between text and icon */
-            transition: transform 0.3s ease;
-        }
-        .accordion-icon.rotate {
-            transform: rotate(45deg); /* Rotates plus to an X, for example */
+            display: inline-block; /* Ensure it respects transform */
+            width: 1em; /* Make it square to center the + / - */
+            text-align: center;
         }
     </style>
 </head>
@@ -766,29 +765,29 @@
         document.querySelectorAll('.accordion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('.accordion-icon'); // Select the new span icon
+                const icon = button.querySelector('.accordion-icon');
 
+                // Check if the clicked accordion is currently active
                 const isActive = accordionContent.classList.contains('active');
 
-                // Close all other accordions first
+                // Close all other open accordion contents and reset their icons
                 document.querySelectorAll('.accordion-content').forEach(otherContent => {
-                    if (otherContent.classList.contains('active')) {
+                    if (otherContent !== accordionContent && otherContent.classList.contains('active')) {
                         otherContent.classList.remove('active');
-                        const otherButton = otherContent.previousElementSibling;
-                        otherButton.classList.remove('bg-gray-100');
-                        otherButton.querySelector('.accordion-icon').textContent = '+'; // Set other icons to plus
+                        otherContent.previousElementSibling.classList.remove('bg-gray-100');
+                        otherContent.previousElementSibling.querySelector('.accordion-icon').textContent = '+';
                     }
                 });
 
-                // Then, toggle the clicked one
-                if (!isActive) {
+                // Toggle the clicked accordion's content and icon
+                if (isActive) {
+                    accordionContent.classList.remove('active');
+                    button.classList.remove('bg-gray-100');
+                    icon.textContent = '+'; // Change to plus
+                } else {
                     accordionContent.classList.add('active');
                     button.classList.add('bg-gray-100');
                     icon.textContent = '-'; // Change to minus
-                } else {
-                    accordionContent.classList.remove('active');
-                    button.classList.remove('bg-gray-100');
-                    icon.textContent = '+'; // Change back to plus
                 }
             });
         });
