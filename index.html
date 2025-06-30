@@ -366,6 +366,18 @@
         .view-site-text-link:hover {
             color: #f97316; /* Optional: Change color on hover for better UX */
         }
+
+        /* Styles for the plus/minus icon */
+        .accordion-icon {
+            font-size: 1.5rem; /* Adjust size as needed */
+            font-weight: bold;
+            color: #f97316; /* Orange color */
+            margin-left: 1rem; /* Space between text and icon */
+            transition: transform 0.3s ease;
+        }
+        .accordion-icon.rotate {
+            transform: rotate(45deg); /* Rotates plus to an X, for example */
+        }
     </style>
 </head>
 <body>
@@ -503,9 +515,7 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
                         <span>Do I own the IP once the site is done?</span>
-                        <span class="transform transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-6 text-gray-700">
                         <p class="pt-2">Absolutely, 100%! When we build your website, it's *your* website. You own all the intellectual property, including the code, design, and content. We simply build it for you. There are no ongoing licensing fees or proprietary systems locking you in. Complete transparency, complete ownership.</p>
@@ -515,9 +525,7 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
                         <span>Do you use a CMS, or just templates?</span>
-                        <span class="transform transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-6 text-gray-700">
                         <p class="pt-2"><strong>Hell no!</strong> We believe in crafting unique, high-performance digital assets. We don't use bloated Content Management Systems (CMS) like WordPress, Wix, or Shopify for our core builds. Every single website we deliver is coded from the ground up, typically managed with Git (like GitHub) for version control and deployment. This means zero unnecessary code, ultimate flexibility, and blazing-fast speeds. No templates, no hacks, just bespoke code.</p>
@@ -527,9 +535,7 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
                         <span>I've tried to build my own site on a CMS, can you save my DIY disaster?</span>
-                        <span class="transform transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-6 text-gray-700">
                         <p class="pt-2">You're not alone! Many tradies attempt DIY websites only to find them slow, inflexible, or just not professional enough. We can absolutely help. We'll assess what's salvageable from your existing efforts (content, branding assets etc.) and then use that as a foundation to build a completely new, high-performance, custom website from the ground up. We turn your 'disaster' into a digital asset that works for you.</p>
@@ -539,9 +545,7 @@
                 <div class="bg-white rounded-lg shadow-md overflow-hidden">
                     <button class="accordion-button w-full flex justify-between items-center p-6 text-xl font-semibold text-left text-gray-800 hover:bg-gray-100 focus:outline-none">
                         <span>Are your websites fast and not bloated like a CMS?</span>
-                        <span class="transform transition-transform duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content px-6 pb-6 text-gray-700">
                         <p class="pt-2">Yes, it's one of our core promises! Traditional CMS platforms are notorious for being bloated with unnecessary features, plugins, and code that slow them down. Because we code from scratch, we include only what's absolutely essential for your business. This results in incredibly fast loading times, superior SEO performance, and a smoother experience for your potential customers. Our websites are built to perform, not to bloat.</p>
@@ -762,23 +766,30 @@
         document.querySelectorAll('.accordion-button').forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('svg');
+                const icon = button.querySelector('.accordion-icon'); // Select the new span icon
 
-                // Toggle the 'active' class on the clicked accordion-content
-                accordionContent.classList.toggle('active');
-                // Toggle the 'rotate-180' class on the icon for rotation
-                icon.classList.toggle('rotate-180');
-                // Toggle background color for the button
-                button.classList.toggle('bg-gray-100');
+                const isActive = accordionContent.classList.contains('active');
 
-                // Close other open accordions
+                // Close all other accordions first
                 document.querySelectorAll('.accordion-content').forEach(otherContent => {
-                    if (otherContent !== accordionContent && otherContent.classList.contains('active')) {
+                    if (otherContent.classList.contains('active')) {
                         otherContent.classList.remove('active');
-                        otherContent.previousElementSibling.classList.remove('bg-gray-100');
-                        otherContent.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+                        const otherButton = otherContent.previousElementSibling;
+                        otherButton.classList.remove('bg-gray-100');
+                        otherButton.querySelector('.accordion-icon').textContent = '+'; // Set other icons to plus
                     }
                 });
+
+                // Then, toggle the clicked one
+                if (!isActive) {
+                    accordionContent.classList.add('active');
+                    button.classList.add('bg-gray-100');
+                    icon.textContent = '-'; // Change to minus
+                } else {
+                    accordionContent.classList.remove('active');
+                    button.classList.remove('bg-gray-100');
+                    icon.textContent = '+'; // Change back to plus
+                }
             });
         });
 
