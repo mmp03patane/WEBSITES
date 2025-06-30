@@ -36,10 +36,16 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            /* Important: padding-top on the content itself can cause partial visibility */
+            /* The padding-bottom should be kept inside the active state or adjusted carefully */
+            padding-top: 0; /* Ensures no visible padding when collapsed */
+            padding-bottom: 0; /* Ensures no visible padding when collapsed */
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out; /* Include padding in transition */
         }
         .accordion-content.active {
             max-height: 500px; /* Adjust as needed for content length */
+            padding-top: 0.5rem; /* pt-2 in Tailwind, example */
+            padding-bottom: 1.5rem; /* pb-6 in Tailwind, example */
         }
         .sample-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -376,6 +382,7 @@
             display: inline-block; /* Ensure it respects transform */
             width: 1em; /* Make it square to center the + / - */
             text-align: center;
+            transition: transform 0.3s ease; /* Add transition for smoothness if needed */
         }
     </style>
 </head>
@@ -774,20 +781,27 @@
                 document.querySelectorAll('.accordion-content').forEach(otherContent => {
                     if (otherContent !== accordionContent && otherContent.classList.contains('active')) {
                         otherContent.classList.remove('active');
-                        otherContent.previousElementSibling.classList.remove('bg-gray-100');
-                        otherContent.previousElementSibling.querySelector('.accordion-icon').textContent = '+';
+                        // Remove padding classes manually
+                        otherContent.classList.remove('pt-2', 'pb-6'); 
+                        const otherButton = otherContent.previousElementSibling;
+                        otherButton.classList.remove('bg-gray-100');
+                        otherButton.querySelector('.accordion-icon').textContent = '+';
                     }
                 });
 
                 // Toggle the clicked accordion's content and icon
                 if (isActive) {
                     accordionContent.classList.remove('active');
+                    // Remove padding classes manually
+                    accordionContent.classList.remove('pt-2', 'pb-6');
                     button.classList.remove('bg-gray-100');
-                    icon.textContent = '+'; // Change to plus
+                    icon.textContent = '+';
                 } else {
                     accordionContent.classList.add('active');
+                    // Add padding classes manually
+                    accordionContent.classList.add('pt-2', 'pb-6'); 
                     button.classList.add('bg-gray-100');
-                    icon.textContent = '-'; // Change to minus
+                    icon.textContent = '-';
                 }
             });
         });
@@ -1045,7 +1059,7 @@
         const closeFeaturesModalBtn = document.getElementById('closeFeaturesModal');
         const saveFeaturesButton = document.getElementById('saveFeaturesButton');
         const addedFeaturesDisplay = document.getElementById('addedFeaturesDisplay');
-        const featureCheckboxes = document.querySelectorAll('#addFeaturesModal input[name="feature"]');
+        const featureCheckboxes = document.querySelectorAll('#addFeaturesModal input[name="feature']");
 
         addMoreFeaturesLink.addEventListener('click', (e) => {
             e.preventDefault();
