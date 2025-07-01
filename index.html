@@ -384,6 +384,21 @@
             text-align: center;
             transition: transform 0.3s ease; /* Add transition for smoothness if needed */
         }
+
+        /* Mobile specific styles for the quote modal */
+        @media (max-width: 767px) {
+            #quoteModal .bg-white {
+                max-height: 90vh; /* Limit height to 90% of viewport height */
+                overflow-y: auto; /* Enable vertical scrolling if content overflows */
+                padding: 1.5rem; /* Adjust padding for smaller screens */
+            }
+            #quoteModal h3 {
+                font-size: 2rem; /* Adjust title size for mobile */
+            }
+            #quoteModal p {
+                font-size: 0.9rem; /* Adjust paragraph size for mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -399,7 +414,7 @@
                     <li><a href="#faq" class="text-gray-600 hover:text-f97316 font-medium">FAQs</a></li>
                     <li><a href="#how-it-works" class="text-gray-600 hover:text-f97316 font-medium">How it Works</a></li>
                     <li><a href="#about" class="text-gray-600 hover:text-f97316 font-medium">About Creative365</a></li>
-                    <li><a href="#contact" class="text-gray-600 hover:text-f97316 font-medium">Get a Quote</a></li>
+                    <li><a href="#" id="navGetQuote" class="text-gray-600 hover:text-f97316 font-medium">Get a Quote</a></li>
                 </ul>
             </nav>
 
@@ -417,7 +432,7 @@
                 <li><a href="#faq" class="text-gray-700 hover:text-f97316 font-medium text-lg block py-2">FAQs</a></li>
                 <li><a href="#how-it-works" class="text-gray-700 hover:text-f97316 font-medium text-lg block py-2">How it Works</a></li>
                 <li><a href="#about" class="text-gray-700 hover:text-f97316 font-medium text-lg block py-2">About Creative365</a></li>
-                <li><a href="#contact" class="text-f97316 hover:text-ea580c font-bold text-lg block py-2">Get a Quote</a></li>
+                <li><a href="#" id="mobileGetQuote" class="text-f97316 hover:text-ea580c font-bold text-lg block py-2">Get a Quote</a></li>
             </ul>
         </nav>
     </header>
@@ -430,9 +445,9 @@
             <p class="text-xl md:text-2xl mb-10 opacity-90 max-w-3xl mx-auto">
                 <b>Sick of inconsistent punters?</b> <br><br>Get a high-converting website and start booking more jobs this week!
             </p>
-            <a href="#contact" class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
+            <button id="heroGetQuote" class="inline-block bg-white text-gray-900 px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-gray-100 transform hover:scale-105 transition duration-300">
                 Get Your FREE Quote!
-            </a>
+            </button>
         </div>
     </section>
 
@@ -644,9 +659,9 @@
                     </div>
                 </div>
                 <div class="text-center mt-12">
-                    <a href="#contact" class="inline-block btn-primary text-white px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:transform hover:scale-105 transition duration-300">
+                    <button id="howItWorksGetQuote" class="inline-block btn-primary text-white px-10 py-4 rounded-full text-lg font-bold shadow-lg hover:transform hover:scale-105 transition duration-300">
                         Get Your FREE Quote!
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
@@ -690,89 +705,65 @@
     <div id="quoteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50 hidden">
         <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full relative transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
             <button id="closeQuoteModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold leading-none">&times;</button>
-            <h3 class="text-3xl font-bold text-center text-f97316 mb-6">Let's Get You More Leads!</h3>
-            <p class="text-center text-gray-600 mb-6">Fill out the form below to schedule a call with Michael and discuss your project. We'll confirm the exact time via email.</p>
+            
+            <div id="formSection">
+                <h3 class="text-3xl font-bold text-center text-f97316 mb-6">Let's Get You More Leads!</h3>
+                <p class="text-center text-gray-600 mb-6">Fill out the form below to schedule a call with Michael and discuss your project. We'll confirm the exact time via email.</p>
 
-            <form id="creative365ContactForm" method="POST" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT_HERE" class="space-y-4">
-                <div class="form-group-creative">
-                    <label for="fullName">Your Full Name<span style="color:red;">*</span></label>
-                    <input type="text" id="fullName" name="Name" placeholder="John Smith" required>
-                    <span class="form-error-message" id="nameError" style="display: none;"></span>
-                </div>
-
-                <div class="form-group-creative">
-                    <label for="emailAddress">Your Email Address<span style="color:red;">*</span></label>
-                    <input type="email" id="emailAddress" name="Email" placeholder="john.smith@example.com" required>
-                    <span class="form-error-message" id="emailError" style="display: none;"></span>
-                </div>
-
-                <div class="form-group-creative">
-                    <label for="phoneNumber">Your Phone Number<span style="color:red;">*</span></label>
-                    <input type="tel" id="phoneNumber" name="Phone" placeholder="e.g., 04XX XXX XXX" required>
-                    <span class="form-error-message" id="phoneError" style="display: none;"></span>
-                </div>
-
-                <div class="form-group-creative">
-                    <label for="preferredDate">Preferred Date for a Call<span style="color:red;">*</span></label>
-                    <input type="date" id="preferredDate" name="Preferred_Date" required>
-                    <span class="form-error-message" id="dateError" style="display: none;"></span>
-                    <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">Please select a date at least 24 hours in the future.</p>
-                </div>
-
-                <div class="form-group-creative">
-                    <label for="preferredTimeSlot">Preferred Time Slot<span style="color:red;">*</span></label>
-                    <select id="preferredTimeSlot" name="Preferred_Time_Slot" required>
-                        <option value="">Select a time slot</option>
-                        <option value="Morning (9 AM - 12 PM AEST)">Morning (9 AM - 12 PM AEST)</option>
-                        <option value="Afternoon (1 PM - 4 PM AEST)">Afternoon (1 PM - 4 PM AEST)</option>
-                        <option value="Late Afternoon (4 PM - 5 PM AEST)">Late Afternoon (4 PM - 5 PM AEST)</option>
-                        <option value="Other">Other (Please specify in message)</option>
-                    </select>
-                    <span class="form-error-message" id="timeSlotError" style="display: none;"></span>
-                    <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">This is a request; we will confirm exact availability.</p>
-                </div>
-
-                <div class="form-group-creative">
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">Do you have your own custom domain?<span style="color:red;">*</span></label>
-                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                        <label style="display: flex; align-items: center;">
-                            <input type="radio" name="hasDomain" value="Yes" required>
-                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">Yes</span>
-                        </label>
-                        <label style="display: flex; align-items: center;">
-                            <input type="radio" name="hasDomain" value="No">
-                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">No</span>
-                        </label>
+                <form id="creative365ContactForm" method="POST" action="https://formspree.io/f/myzjobdw" class="space-y-4">
+                    <div class="form-group-creative">
+                        <label for="fullName">Your Full Name<span style="color:red;">*</span></label>
+                        <input type="text" id="fullName" name="Name" placeholder="John Smith" required>
+                        <span class="form-error-message" id="nameError" style="display: none;"></span>
                     </div>
-                </div>
 
-                <div class="form-group-creative">
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">
-                        Do you currently use a Customer Management System (CMS)?<span style="color:red;">*</span>
-                    </label>
-                    <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                        <label style="display: flex; align-items: center;">
-                            <input type="radio" name="usesCMS" value="Yes" required>
-                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">Yes</span>
-                        </label>
-                        <label style="display: flex; align-items: center;">
-                            <input type="radio" name="usesCMS" value="No">
-                            <span style="margin-left: 0.5rem; font-family: 'Inter', sans-serif; font-size: 1rem; color: #333;">No</span>
-                        </label>
+                    <div class="form-group-creative">
+                        <label for="emailAddress">Your Email Address<span style="color:red;">*</span></label>
+                        <input type="email" id="emailAddress" name="Email" placeholder="john.smith@example.com" required>
+                        <span class="form-error-message" id="emailError" style="display: none;"></span>
                     </div>
-                </div>
 
-                <div class="form-group-creative">
-                    <label for="message">Your Message / Project Details<span style="color:red;">*</span></label>
-                    <textarea id="message" name="Message" rows="5" placeholder="Tell us about your business and website needs..." required></textarea>
-                    <span class="form-error-message" id="messageError" style="display: none;"></span>
-                </div>
+                    <div class="form-group-creative">
+                        <label for="phoneNumber">Your Phone Number<span style="color:red;">*</span></label>
+                        <input type="tel" id="phoneNumber" name="Phone" placeholder="e.g., 04XX XXX XXX" required>
+                        <span class="form-error-message" id="phoneError" style="display: none;"></span>
+                    </div>
 
-                <button type="submit" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transform hover:scale-105 transition duration-300">
-                    Get My Custom Quote!
+                    <div class="form-group-creative">
+                        <label for="preferredDate">Preferred Date for a Call<span style="color:red;">*</span></label>
+                        <input type="date" id="preferredDate" name="Preferred_Date" required>
+                        <span class="form-error-message" id="dateError" style="display: none;"></span>
+                        <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">Please select a date at least 24 hours in the future.</p>
+                    </div>
+
+                    <div class="form-group-creative">
+                        <label for="preferredTimeSlot">Preferred Time Slot<span style="color:red;">*</span></label>
+                        <select id="preferredTimeSlot" name="Preferred_Time_Slot" required>
+                            <option value="">Select a time slot</option>
+                            <option value="Morning (9 AM - 12 PM AEST)">Morning (9 AM - 12 PM AEST)</option>
+                            <option value="Afternoon (1 PM - 4 PM AEST)">Afternoon (1 PM - 4 PM AEST)</option>
+                            <option value="Late Afternoon (4 PM - 5 PM AEST)">Late Afternoon (4 PM - 5 PM AEST)</option>
+                            <option value="Other">Other (Please specify in message)</option>
+                        </select>
+                        <span class="form-error-message" id="timeSlotError" style="display: none;"></span>
+                        <p style="font-size: 0.9rem; color: #555; margin-top: 0.5rem; text-align: left;">This is a request; we will confirm exact availability.</p>
+                    </div>
+
+                    <button type="submit" class="w-full btn-primary text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:shadow-outline transform hover:scale-105 transition duration-300">
+                        Get My Custom Quote!
+                    </button>
+                    <p id="formMessage" class="text-center text-sm mt-4 text-gray-600"></p>
+                </form>
+            </div>
+
+            <div id="thankYouMessageContainer" class="hidden text-center">
+                <h3 class="text-3xl font-bold text-f97316 mb-6">Request Sent Successfully!</h3>
+                <p class="text-lg text-gray-700">Awesome! Your request has been sent. Michael will be in touch within 24-48 hours to discuss how we can get your quote-generating machine built!</p>
+                <button id="closeThankYouModal" class="mt-8 inline-block btn-primary text-white font-bold py-3 px-6 rounded-full shadow-lg hover:transform hover:scale-105 transition duration-300">
+                    Close
                 </button>
-                <p id="formMessage" class="text-center text-sm mt-4 text-gray-600"></p>
-            </form>
+            </div>
+
         </div>
     </div>
 
@@ -864,36 +855,61 @@
 
 
         // Quote Modal Functionality
-        const openQuoteModalBtn = document.getElementById('openQuoteModal');
+        const getQuoteButtons = document.querySelectorAll('#openQuoteModal, #heroGetQuote, #howItWorksGetQuote, #navGetQuote, #mobileGetQuote, #getPriceButton');
         const closeQuoteModalBtn = document.getElementById('closeQuoteModal');
         const quoteModal = document.getElementById('quoteModal');
         const modalContent = document.getElementById('modalContent');
+        const formSection = document.getElementById('formSection'); // Added to reference the form container
+        const thankYouMessageContainer = document.getElementById('thankYouMessageContainer'); // Added for thank you message
+        const closeThankYouModalBtn = document.getElementById('closeThankYouModal'); // Added for close button on thank you message
         const creative365ContactForm = document.getElementById('creative365ContactForm'); 
         const formMessage = document.getElementById('formMessage');
 
-        openQuoteModalBtn.addEventListener('click', () => {
+        // Function to open the modal
+        const openModal = () => {
+            // Show the form and hide the thank you message
+            formSection.classList.remove('hidden');
+            thankYouMessageContainer.classList.add('hidden');
+            creative365ContactForm.reset(); // Reset the form fields
+
+            // Clear any previous error/success messages
+            formMessage.textContent = '';
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('dateError').style.display = 'none';
+            document.getElementById('timeSlotError').style.display = 'none';
+
             quoteModal.classList.remove('hidden');
             setTimeout(() => {
                 modalContent.classList.remove('scale-95', 'opacity-0');
                 modalContent.classList.add('scale-100', 'opacity-100');
             }, 10);
-        });
+        };
 
-        closeQuoteModalBtn.addEventListener('click', () => {
+        // Function to close the modal
+        const closeModal = () => {
             modalContent.classList.remove('scale-100', 'opacity-100');
             modalContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => {
                 quoteModal.classList.add('hidden');
             }, 300);
+        };
+
+        // Event listeners for opening the modal
+        getQuoteButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                openModal();
+            });
         });
 
+        // Event listeners for closing the modal
+        closeQuoteModalBtn.addEventListener('click', closeModal);
+        closeThankYouModalBtn.addEventListener('click', closeModal); // Close button on thank you message
         quoteModal.addEventListener('click', (e) => {
             if (e.target === quoteModal) {
-                modalContent.classList.remove('scale-100', 'opacity-100');
-                modalContent.classList.add('scale-95', 'opacity-0');
-                setTimeout(() => {
-                    quoteModal.classList.add('hidden');
-                }, 300);
+                closeModal();
             }
         });
 
@@ -910,30 +926,30 @@
             const phoneNumber = document.getElementById('phoneNumber');
             const preferredDate = document.getElementById('preferredDate');
             const preferredTimeSlot = document.getElementById('preferredTimeSlot');
-            const message = document.getElementById('message');
+
+            // Reset error messages (already done by openModal, but good to ensure here too)
+            document.getElementById('nameError').style.display = 'none';
+            document.getElementById('emailError').style.display = 'none';
+            document.getElementById('phoneError').style.display = 'none';
+            document.getElementById('dateError').style.display = 'none';
+            document.getElementById('timeSlotError').style.display = 'none';
 
             if (fullName.value.trim() === '') {
                 document.getElementById('nameError').textContent = 'Full Name is required.';
                 document.getElementById('nameError').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('nameError').style.display = 'none';
             }
 
             if (emailAddress.value.trim() === '' || !emailAddress.value.includes('@')) {
                 document.getElementById('emailError').textContent = 'A valid Email Address is required.';
                 document.getElementById('emailError').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('emailError').style.display = 'none';
             }
 
             if (phoneNumber.value.trim() === '') {
                 document.getElementById('phoneError').textContent = 'Phone Number is required.';
                 document.getElementById('phoneError').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('phoneError').style.display = 'none';
             }
 
             const selectedDate = new Date(preferredDate.value);
@@ -946,37 +962,12 @@
                 document.getElementById('dateError').textContent = 'Please select a date at least 24 hours in the future.';
                 document.getElementById('dateError').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('dateError').style.display = 'none';
             }
 
             if (preferredTimeSlot.value === '') {
                 document.getElementById('timeSlotError').textContent = 'Please select a preferred time slot.';
                 document.getElementById('timeSlotError').style.display = 'block';
                 isValid = false;
-            } else {
-                document.getElementById('timeSlotError').style.display = 'none';
-            }
-
-            const hasDomainRadios = document.querySelectorAll('input[name="hasDomain"]');
-            const usesCMSRadios = document.querySelectorAll('input[name="usesCMS"]');
-            
-            let isDomainSelected = Array.from(hasDomainRadios).some(radio => radio.checked);
-            let isCmsSelected = Array.from(usesCMSRadios).some(radio => radio.checked);
-
-            if (!isDomainSelected) {
-                isValid = false;
-            }
-            if (!isCmsSelected) {
-                isValid = false;
-            }
-
-            if (message.value.trim() === '') {
-                document.getElementById('messageError').textContent = 'Please tell us about your project.';
-                document.getElementById('messageError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('messageError').style.display = 'none';
             }
 
             if (!isValid) {
@@ -988,11 +979,6 @@
 
             const formData = new FormData(creative365ContactForm); 
             
-            // Append selected features to form data
-            document.querySelectorAll('#addedFeaturesDisplay li').forEach(item => {
-                formData.append('Added_Feature[]', item.textContent.trim());
-            });
-
             try {
                 const response = await fetch(creative365ContactForm.action, {
                     method: creative365ContactForm.method,
@@ -1003,13 +989,10 @@
                 });
 
                 if (response.ok) {
-                    formMessage.textContent = "Awesome! Your request has been sent. Michael will be in touch within 24-48 hours to discuss how we can get your quote-generating machine built!";
-                    formMessage.classList.remove('text-gray-600', 'text-red-600');
-                    formMessage.classList.add('text-green-600');
-                    creative365ContactForm.reset(); 
-                    // Optionally clear added features display after submission
-                    document.getElementById('addedFeaturesDisplay').innerHTML = '';
-                    document.getElementById('addedFeaturesDisplay').classList.add('hidden');
+                    // Hide the form and show the thank you message
+                    formSection.classList.add('hidden');
+                    thankYouMessageContainer.classList.remove('hidden');
+                    formMessage.textContent = ''; // Clear the "Sending..." message
                 } else {
                     const data = await response.json();
                     if (data.errors) {
