@@ -951,16 +951,16 @@
             }
 
             const selectedDate = new Date(preferredDate.value);
-            const now = new Date();
-            now.setHours(0, 0, 0, 0); 
-            const tomorrow = new Date(now);
-            tomorrow.setDate(now.getDate() + 1);
+const now = new Date(); // This now correctly represents the current date and time
 
-            if (preferredDate.value === '' || selectedDate < tomorrow) {
-                document.getElementById('dateError').textContent = 'Please select a date at least 24 hours in the future.';
-                document.getElementById('dateError').style.display = 'block';
-                isValid = false;
-            }
+// Calculate 12 hours from now
+const twelveHoursFromNow = new Date(now.getTime() + (12 * 60 * 60 * 1000)); // Add 12 hours in milliseconds
+
+if (preferredDate.value === '' || selectedDate < twelveHoursFromNow) {
+    document.getElementById('dateError').textContent = 'Please select a date and time at least 12 hours in the future.';
+    document.getElementById('dateError').style.display = 'block';
+    isValid = false;
+}
 
             if (preferredTimeSlot.value === '') {
                 document.getElementById('timeSlotError').textContent = 'Please select a preferred time slot.';
